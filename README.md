@@ -12,7 +12,7 @@ kubectl apply -f dashboard-route.yaml -n kube-system
 ## 2. ingress nginx 
 宿主机网络暴露：deployment .spec.template.spec.hostNetwork: true 使用宿主机网络，端口暴露在宿主机上
 
-## 3. kubernetes dashboard
+## 3. [kubernetes dashboard](https://github.com/kubernetes/dashboard)
 ### 3.1. 使用以下命令暴露
 kubectl port-forward --namespace kubernetes-dashboard --address 0.0.0.0 service/kubernetes-dashboard 443
 
