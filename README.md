@@ -22,4 +22,5 @@ https://10.70.128.50
 ### 3.3. 使用以下命令获取token
 kubectl describe secret/kubernetes-dashboard-token-fxfxp -n kubernetes-dashboard
 
-### 3.4. kubernetes-dashboard.yaml中已做注释，默认的clusterrole权限不够，使用超级使用户cluster-admin，其拥有访问kube-apiserver的所有权限
+### 3.4. 权限报错处理
+kubernetes-dashboard.yaml中已做注释，默认的clusterrole权限不够，使用超级使用户cluster-admin，其拥有访问kube-apiserver的所有权限
