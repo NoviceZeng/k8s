@@ -159,7 +159,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  #超级使用户权限，其拥有访问kube-apiserver的所有权限,使用上面注释的clusterrole，出现权限不足的报错
+  #超级用户权限，其拥有访问kube-apiserver的所有权限,使用上面注释的clusterrole，出现权限不足的报错
   name: cluster-admin
 subjects:
   - kind: ServiceAccount
