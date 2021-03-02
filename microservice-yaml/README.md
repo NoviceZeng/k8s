@@ -1,29 +1,21 @@
-## 1. traefik部署方式
+	1. 启用Harbor的Chart仓库服务
+	harbor 安装helm charts的仓库
+          docker-compose stop
+         ./install.sh --with-chartmuseum
 
-```yaml
-kubectl apply -f traefik-crd.yaml
-kubectl apply -f crd.yaml
-kubectl apply -f rbac.yaml -n kube-system
-kubectl apply -f config.yaml -n kube-system
-kubectl apply -f deploy.yaml -n kube-system
-kubectl apply -f dashboard-route.yaml -n kube-system
-```
-
-## 2. ingress nginx 
-### 2.1. 宿主机网络暴露：deployment .spec.template.spec.hostNetwork: true 使用宿主机网络，端口暴露在宿主机上
-> * 每个node需要启动一个ingress-controller？
-> * 每个node都会占用80和443端口？
-### 2.2. 使用service的nodeport方式
-
-## 3. [kubernetes dashboard](https://github.com/kubernetes/dashboard)
-### 3.1. 使用以下命令暴露
-kubectl port-forward --namespace kubernetes-dashboard --address 0.0.0.0 service/kubernetes-dashboard 443
-
-### 3.2. 使用以下（master节点ip）URL登录
-https://10.70.128.50
-
-### 3.3. 使用以下命令获取token
-kubectl describe secret/kubernetes-dashboard-token-fxfxp -n kubernetes-dashboard
-
-### 3.4. 权限报错处理
-kubernetes-dashboard.yaml中已做注释，默认的clusterrole权限不够，使用超级使用户cluster-admin，其拥有访问kube-apiserver的所有权限
+	2. 安装push插件
+	helm plugin install https://github.com/chartmuseum/helm-push
+	
+	3. 添加repo仓库
+	helm repo add  --username admin --password Harbor12345 myrepo http://10.70.128.51/chartrepo/microservice
+	
+	4. 推送与安装chart
+	helm push mysql-0.3.5.tgz --username=admin --password=Harbor12345 http://10.70.128.51/chartrepo/microservice
+	如果上面报错，就用第三部添加的仓库名myrepo来执行，helm push mysql-0.3.5.tgz myrepo -u admin -p Harbor12345
+	 helm install web --version 0.3.5 myrepo/demo
+	
+	
+	5. Eureka注册中心为基础服务，先部署好，不需要放到Jenkins中进行发布
+	
+	6. Master 1.20, kuboard安装后master节点自动设置污点
+![image](https://user-images.githubusercontent.com/33800153/109617914-ec3eed80-7b71-11eb-9ffd-d0ab89bbf80c.png)
