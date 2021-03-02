@@ -2,7 +2,7 @@
 ### 1.1 启用Harbor的Chart仓库服务
 harbor 安装helm charts的仓库
   docker-compose stop
- ./install.sh **--with-chartmuseum
+ ./install.sh **--with-chartmuseum**
 
 2. 安装push插件
 helm plugin install https://github.com/chartmuseum/helm-push
