@@ -8,6 +8,7 @@ RUN yum install -y java-1.8.0-openjdk maven curl git libtool-ltdl-devel && \
 COPY slave.jar /usr/share/jenkins/slave.jar  
 COPY jenkins-slave /usr/bin/jenkins-slave
 RUN chmod +x /usr/bin/jenkins-slave
+RUN echo '10.70.128.55   test.viba.club' > /etc/hosts
 COPY helm kubectl /usr/bin/
-COPY settings.xml /etc/maven/settings.xml
+
 ENTRYPOINT ["jenkins-slave"]

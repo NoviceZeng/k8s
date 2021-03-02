@@ -21,6 +21,8 @@ spec:
         - name: jenkins
           image: jenkins/jenkins:lts 
           imagePullPolicy: Always
+          securityContext:
+            runAsUser: 0
           ports:
             - containerPort: 8080
             - containerPort: 50000

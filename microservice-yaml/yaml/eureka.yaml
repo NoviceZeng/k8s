@@ -1,0 +1,85 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: eureka 
+  namespace: ms 
+spec:
+  rules:
+    - host: eureka.ctnrs.com 
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: eureka 
+              port: 
+                number: 8888
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka
+  namespace: ms
+spec:
+  clusterIP: None
+  ports:
+  - port: 8888
+    name: eureka 
+  selector:
+    project: ms
+    app: eureka
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: eureka
+  namespace: ms 
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: ms
+      app: eureka
+  serviceName: "eureka"
+  template:
+    metadata:
+      labels:
+        project: ms 
+        app: eureka
+    spec:
+      imagePullSecrets:
+      - name: registry-pull-secret
+      containers:
+      - name: eureka
+        image: test.viba.club/microservice/eureka:2021-02-26-22-52-09
+        ports:
+          - protocol: TCP
+            containerPort: 8888
+        env:
+          - name: JAVA_OPTS
+            value: "-Xmx1g"
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+        resources:
+          requests:
+            cpu: 0.5
+            memory: 256Mi
+          limits:
+            cpu: 1 
+            memory: 1Gi
+        readinessProbe:
+          tcpSocket:
+            port: 8888
+          initialDelaySeconds: 60
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 8888
+          initialDelaySeconds: 60
+          periodSeconds: 10
