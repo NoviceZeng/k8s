@@ -1,6 +1,6 @@
  ## 1. Harbor仓库、Helm相关配置 
 ### 1.1 启用Harbor的Chart仓库服务
-harbor 安装helm charts的仓库 ?
+harbor 安装helm charts的仓库 
   ```docker-compose stop
  ./install.sh --with-chartmuseum```
 
