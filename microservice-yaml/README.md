@@ -12,14 +12,15 @@ helm plugin install https://github.com/chartmuseum/helm-push
 ### 1.3 添加repo仓库
 ```helm repo add  --username admin --password Harbor12345 myrepo http://10.70.128.51/chartrepo/microservice```
 
-### 1.4 推送与安装chart
+### 1.4 推送chart包
 ```helm push ms-0.1.0.tgz --username=admin --password=Harbor12345 http://10.70.128.51/chartrepo/microservice```
 ![image](https://user-images.githubusercontent.com/33800153/109740758-c31c6c80-7c06-11eb-9c2f-7471bb031fd8.png)
 
-如果上面报错，就用第三部添加的仓库名myrepo来执行
+如果上面报错，直接用chart包名myrepo来push
 ``` helm push ms-0.1.0.tgz myrepo -u admin -p Harbor12345 ```
 
 
+## 2. Jenkins安装部署后
 ### 1.5 Eureka注册中心为基础服务，先部署好，不需要放到Jenkins中进行发布
 
 6. Master 1.20, kuboard安装后master节点自动设置污点
