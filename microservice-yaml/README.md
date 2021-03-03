@@ -14,9 +14,9 @@ helm plugin install https://github.com/chartmuseum/helm-push
 
 ### 1.4 推送与安装chart
 ```helm push ms-0.1.0.tgz --username=admin --password=Harbor12345 http://10.70.128.51/chartrepo/microservice```
+
 如果上面报错，就用第三部添加的仓库名myrepo来执行
-```helm push ms-0.1.0.tgz myrepo -u admin -p Harbor12345
-helm install web --version 0.3.5 myrepo/demo```
+``` helm push ms-0.1.0.tgz myrepo -u admin -p Harbor12345 ```
 
 
 ### 1.5 Eureka注册中心为基础服务，先部署好，不需要放到Jenkins中进行发布
