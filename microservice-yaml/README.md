@@ -14,6 +14,7 @@ helm plugin install https://github.com/chartmuseum/helm-push
 
 ### 1.4 推送与安装chart
 ```helm push ms-0.1.0.tgz --username=admin --password=Harbor12345 http://10.70.128.51/chartrepo/microservice```
+![image](https://user-images.githubusercontent.com/33800153/109740758-c31c6c80-7c06-11eb-9c2f-7471bb031fd8.png)
 
 如果上面报错，就用第三部添加的仓库名myrepo来执行
 ``` helm push ms-0.1.0.tgz myrepo -u admin -p Harbor12345 ```
