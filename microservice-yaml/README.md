@@ -33,4 +33,5 @@ helm plugin install https://github.com/chartmuseum/helm-push
 > * k8s 1.20yaml语法已更新，根据提示修改apiVersion，以及其他配置项，ingress apiVersion错误，会导致访问服务不通
 > * pod删除后，对应pv/pvc不会删除，需要手动删除  kubectl delete pvc jenkins-home-jenkins-0
 > * nfs server的挂载路径需要有写权限
-> * Master 1.20, kuboard安装后master节点自动设置污点, 部署到上面的服务的yaml文件需要加上对应容忍度，
+> * Master 1.20, kuboard安装后master节点自动设置污点, 部署到上面的服务的yaml文件需要加上对应容忍度
+> * containerd必须要用到https推送到harbor上
