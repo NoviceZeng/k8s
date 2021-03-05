@@ -1,7 +1,7 @@
 pipeline {
     agent {
         kubernetes {
-		    label "jenkins-slave"
+            label "jenkins-slave"
                 yaml """
 kind: Pod
 metadata:
@@ -47,21 +47,21 @@ spec:
         }      
     }
 
-	environment {
+    environment {
         //Harbor镜像仓库地址
         registry = "test.abc.club"
         //Harbor项目名称，根据项目实际，可以直接引用，不用定义变量也行
         project = "microservice"
         
-  		harbor_registry_auth = "849fa182-daaa-427c-a525-6f95de81fe90"
-		image_pull_secret = "registry-pull-secret"
-		git_url = "http://10.70.128.56:9999/novice/ms.git"
+        harbor_registry_auth = "849fa182-daaa-427c-a525-6f95de81fe90"
+        image_pull_secret = "registry-pull-secret"
+        git_url = "http://10.70.128.56:9999/novice/ms.git"
         git_auth = "bccaa692-84a1-424c-9407-debd05a5f002"
-
-		k8s_auth = "a09d360c-c9bb-4e89-b0ba-b262a2e6db51"
-		gateway_domain_name = "gateway.yiming.com"
-		portal_domain_name = "portal.yiming.com"
-	}	
+        
+        k8s_auth = "a09d360c-c9bb-4e89-b0ba-b262a2e6db51"
+        gateway_domain_name = "gateway.yiming.com"
+        portal_domain_name = "portal.yiming.com"
+    }	
 
     parameters {
         gitParameter branch: '', branchFilter: '.*', defaultValue: '', description: '选择发布的分支', name: 'Branch', quickFilterEnabled: false, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'PT_BRANCH'        
