@@ -28,10 +28,13 @@ helm plugin install https://github.com/chartmuseum/helm-push
 ``` helm push ms-0.1.0.tgz myrepo -u admin -p Harbor12345 ```
 
 
-## 3. 注意事项
-> * Eureka注册中心为基础服务，先部署好，不需要放到Jenkins中发布
-> * k8s 1.20yaml语法已更新，根据提示修改apiVersion，以及其他配置项，ingress apiVersion错误，会导致访问服务不通
-> * pod删除后，对应pv/pvc不会删除，需要手动删除  kubectl delete pvc jenkins-home-jenkins-0
-> * nfs server的挂载路径需要有写权限
-> * Master 1.20, kuboard安装后master节点自动设置污点, 部署到上面的服务的yaml文件需要加上对应容忍度
-> * containerd必须要用到https推送到harbor上
+## 3. 其他注意事项
+3.1. Eureka注册中心为基础服务，先部署好，不需要放到Jenkins中发布
+
+3.2. k8s 1.20 yaml语法已更新，根据提示修改apiVersion，以及其他配置项，ingress apiVersion错误，会导致访问服务不通,具体见yaml文件
+
+3.4. pod删除后，对应pv/pvc不会删除，需要手动删除  ```kubectl delete pvc jenkins-home-jenkins-0``` 注意没有 **-f**，nfs server的挂载路径需要有写权限。
+
+3.5. 使用ctr客户端拉取镜像时，要求harbor URL必须配置证书，又由于harbor URL没有配置外网dns解析，需要额外在Jenkins slave中配置host，具体见pipeline中agent配置文件。
+
+3.6.  Master 1.20, kuboard安装后master节点自动设置污点, 部署到上面的服务的yaml文件需要加上对应容忍度 
