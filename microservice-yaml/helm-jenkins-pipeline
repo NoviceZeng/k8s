@@ -7,16 +7,17 @@ kind: Pod
 metadata:
   name: jenkins-slave
 spec:
+  #由于harbor使用加密https，下面配置host，由于安装方式，需要配置apiserver的host
   hostAliases:
   - ip: "10.70.128.55"
     hostnames:
-    - "test.viba.club"
+    - "test.abc.club"
   - ip: "10.70.128.50"
     hostnames:
     - "apiserver.demo"
   containers:
   - name: jnlp
-    image: "test.viba.club/library/jenkins-slave:jdk-1.8"   
+    image: "test.abc.club/library/jenkins-slave:jdk-1.8"   
     imagePullPolicy: Always
     volumeMounts:
       - name: docker-cmd 	
@@ -48,7 +49,7 @@ spec:
 
 	environment {
         //Harbor镜像仓库地址
-        registry = "test.viba.club"
+        registry = "test.abc.club"
         //Harbor项目名称，根据项目实际，可以直接引用，不用定义变量也行
         project = "microservice"
         
@@ -89,7 +90,7 @@ spec:
             steps {
                 withCredentials([usernamePassword(credentialsId: "${harbor_registry_auth}", passwordVariable: 'password', usernameVariable: 'username')]) {
                     sh """
-                        ping test.viba.club -c 3
+                        ping test.abc.club -c 3
                         cat /etc/hosts
                         docker login -u ${username} -p '${password}' ${registry}
                         #遍历extendedChoice中选定的service的Service
