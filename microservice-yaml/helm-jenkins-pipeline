@@ -59,8 +59,8 @@ spec:
         git_auth = "bccaa692-84a1-424c-9407-debd05a5f002"
 
 		k8s_auth = "a09d360c-c9bb-4e89-b0ba-b262a2e6db51"
-		gateway_domain_name = "gateway.ctnrs.com"
-		portal_domain_name = "portal.ctnrs.com"
+		gateway_domain_name = "gateway.yiming.com"
+		portal_domain_name = "portal.yiming.com"
 	}	
 
     parameters {
@@ -110,10 +110,10 @@ spec:
                     
                     configFileProvider([configFile(fileId: "${k8s_auth}", targetLocation: "admin.kubeconfig")]){
                         sh """
-                            # 添加镜像拉取认证,根据报错提示，Jenkins-slave的dockerfile中chmod没有生效，以下两处加上chod赋予其执行权限
+                            # 添加镜像拉取认证,根据报错提示，Jenkins-slave的dockerfile中chmod没有生效，以下两处加上chod赋予其执行权限，此处不需要手动价https
                             chmod +x /usr/bin/kubectl
                             kubectl create secret docker-registry ${image_pull_secret} --docker-username=${username} --docker-password=${password} --docker-server=${registry} -n ${Namespace} --kubeconfig admin.kubeconfig |true
-                            # 添加私有chart仓库
+                            # 添加私有chart仓库, 注意下面需要加https
                             chmod +x /usr/bin/helm
                             helm repo add  --username ${username} --password ${password} myrepo https://${registry}/chartrepo/${project}
                         """
