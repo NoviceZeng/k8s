@@ -39,6 +39,6 @@ helm plugin install https://github.com/chartmuseum/helm-push
 
 3.6. pod中容器的host文件由Kubelet托管，用户修改该hosts文件的任何内容都会在容器重启或Pod重新调度后被Kubelet覆盖。使用HostAliases修改，具体见pipeline中agent配置文件。
 
-     **如果Pod启用了hostNetwork（即使用主机网络），那么将不能使用HostAliases特性，因为Kubelet只管理非hostNetwork类型Pod的hosts文件。**
+   **如果Pod启用了hostNetwork（即使用主机网络），那么将不能使用HostAliases特性，因为Kubelet只管理非hostNetwork类型Pod的hosts文件。**
 
 3.7.  Master 1.20, kuboard安装后master节点自动设置污点, 部署到上面的服务的yaml文件需要加上对应容忍度 
