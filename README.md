@@ -21,7 +21,7 @@ kubectl apply -f dashboard-route.yaml -n kube-system
 > * 每个node都会占用80和443端口？
 ### 2.3. 使用service的nodeport方式
 
-## 3. [kubernetes dashboard](https://github.com/kubernetes/dashboard)部署
+## 3. [kubernetes dashboard](https://github.com/kubernetes/dashboard)部署以及常见问题
 ### 3.1. 使用以下命令暴露
 kubectl port-forward --namespace kubernetes-dashboard --address 0.0.0.0 service/kubernetes-dashboard 443
 
