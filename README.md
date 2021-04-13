@@ -1,5 +1,5 @@
 ## 1. traefik部署
-[yaml文件](https://github.com/NoviceZeng/k8s/tree/main/trafik_deployment)见本GitHub
+yaml文件见本[GitHub](https://github.com/NoviceZeng/k8s/tree/main/trafik_deployment)
 
 ```yaml
 kubectl apply -f traefik-crd.yaml
