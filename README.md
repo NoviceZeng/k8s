@@ -23,6 +23,26 @@ kubectl apply -f dashboard-route.yaml -n kube-system
 **注意** 如果Pod启用了hostNetwork（即使用主机网络），那么将不能使用HostAliases特性，因为Kubelet只管理非hostNetwork类型Pod的hosts文件!
 
 ### 2.3. 使用service的nodeport方式
+如下面Jenkins的service配置所示：
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins
+spec:
+  selector:
+    name: jenkins
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+      nodePort: 30006
+    - name: agent
+      port: 50000
+      protocol: TCP
+```
 
 ## 3. [kubernetes dashboard](https://github.com/kubernetes/dashboard)部署以及常见问题
 ### 3.1. 使用以下命令暴露
