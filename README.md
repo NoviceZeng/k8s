@@ -10,13 +10,17 @@ kubectl apply -f dashboard-route.yaml -n kube-system
 ```
 
 ## 2. ingress nginx 
-### 2.1. 宿主机网络暴露
+### 2.1. 部署
+[Ingress Github官网](https://github.com/kubernetes/ingress-nginx)
+部署：kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml
+
+### 2.2. 宿主机网络暴露
 ```deployment .spec.template.spec.hostNetwork: true ``` # 使用宿主机网络，端口暴露在宿主机上
 > * 每个node需要启动一个ingress-controller？
 > * 每个node都会占用80和443端口？
-### 2.2. 使用service的nodeport方式
+### 2.3. 使用service的nodeport方式
 
-## 3. [kubernetes dashboard](https://github.com/kubernetes/dashboard)
+## 3. [kubernetes dashboard](https://github.com/kubernetes/dashboard)部署
 ### 3.1. 使用以下命令暴露
 kubectl port-forward --namespace kubernetes-dashboard --address 0.0.0.0 service/kubernetes-dashboard 443
 
