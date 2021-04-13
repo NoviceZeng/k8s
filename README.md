@@ -10,7 +10,8 @@ kubectl apply -f dashboard-route.yaml -n kube-system
 ```
 
 ## 2. ingress nginx 
-### 2.1. 宿主机网络暴露：deployment .spec.template.spec.hostNetwork: true 使用宿主机网络，端口暴露在宿主机上
+### 2.1. 宿主机网络暴露
+```deployment .spec.template.spec.hostNetwork: true ``` # 使用宿主机网络，端口暴露在宿主机上
 > * 每个node需要启动一个ingress-controller？
 > * 每个node都会占用80和443端口？
 ### 2.2. 使用service的nodeport方式
