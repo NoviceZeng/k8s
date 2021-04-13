@@ -19,6 +19,9 @@ kubectl apply -f dashboard-route.yaml -n kube-system
 ```deployment .spec.template.spec.hostNetwork: true ``` # 使用宿主机网络，端口暴露在宿主机上
 > * 每个node需要启动一个ingress-controller？
 > * 每个node都会占用80和443端口？
+
+**注意** 如果Pod启用了hostNetwork（即使用主机网络），那么将不能使用HostAliases特性，因为Kubelet只管理非hostNetwork类型Pod的hosts文件!
+
 ### 2.3. 使用service的nodeport方式
 
 ## 3. [kubernetes dashboard](https://github.com/kubernetes/dashboard)部署以及常见问题
