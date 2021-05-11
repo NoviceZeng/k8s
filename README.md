@@ -20,7 +20,10 @@ kubectl apply -f dashboard-route.yaml -n kube-system
 > * 每个node需要启动一个ingress-controller？
 > * 每个node都会占用80和443端口？
 
-**注意** 如果Pod启用了hostNetwork（即使用主机网络），那么将不能使用HostAliases特性，因为Kubelet只管理非hostNetwork类型Pod的hosts文件!
+hostNetwork类型的pod也存在多方面的缺点：
+> * 假如pod重建，pod可能会调度到其他node上，这个时候pod的ip就改变了，那么客户端的配置很可能需要更改
+> * 因为与宿主机共享网络协议栈，所以需要考虑端口冲突的问题。如果hostNetwork类型的pod太多，端口冲突将会非常常见，运维成本也会变高
+> * 不能使用HostAliases特性，因为Kubelet只管理非hostNetwork类型Pod的hosts文件!
 
 ### 2.3. 使用service的nodeport方式
 如下面Jenkins的service配置所示：
