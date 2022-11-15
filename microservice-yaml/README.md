@@ -16,6 +16,14 @@ harbor 安装helm charts的仓库
 
 ### 2.2 安装push插件
 helm plugin install https://github.com/chartmuseum/helm-push
+如果网络下载不了，也可以下载安装包手动安装：
+
+```
+# tar zxvf helm-push_x.x.x_linux_amd64.tar.gz
+# mkdir -p /root/.local/share/helm/plugins/helm-push
+# chmod +x bin/*
+# mv bin plugin.yaml /root/.local/share/helm/plugins/helm-push
+```
 
 ### 2.3 添加repo仓库
 ```
