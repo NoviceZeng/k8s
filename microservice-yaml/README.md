@@ -19,6 +19,7 @@ helm plugin install https://github.com/chartmuseum/helm-push
 
 ### 2.3 添加repo仓库
 ```helm repo add  --username admin --password Harbor12345 myrepo http://10.70.128.51/chartrepo/microservice```
+helm repo add --username <username> --password <password> <repo name> https://harbor.fusionride.com/chartrepo/<project name>
 
 ### 2.4 推送chart包
 ```helm push ms-0.1.0.tgz --username=admin --password=Harbor12345 http://10.70.128.51/chartrepo/microservice```
