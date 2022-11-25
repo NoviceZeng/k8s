@@ -32,7 +32,10 @@ helm repo add --username <username> --password <password> <repo name> https://ha
 ```
 
 ### 2.4 推送chart包
-```helm push ms-0.1.0.tgz --username=admin --password=Harbor12345 http://10.70.128.51/chartrepo/microservice```
+```
+Old: helm push ms-0.1.0.tgz --username=admin --password=Harbor12345 http://10.70.128.51/chartrepo/microservice
+New: helm cm-push --username=admin --password='XXXXX' test-ms-0.1.0.tgz <repo name>
+```
 ![image](https://user-images.githubusercontent.com/33800153/109740758-c31c6c80-7c06-11eb-9c2f-7471bb031fd8.png)
 
 如果上面报错，直接用chart包名myrepo来push
